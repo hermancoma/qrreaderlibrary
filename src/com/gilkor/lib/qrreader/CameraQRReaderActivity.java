@@ -16,7 +16,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
-import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.FrameLayout;
 
 import android.hardware.Camera;
@@ -82,16 +83,6 @@ public class CameraQRReaderActivity extends Activity {
 		preview = (FrameLayout) findViewById(R.id.cameraPreview);
 		preview.addView(mPreview);
 		
-		View cancelButton = findViewById(R.id.cancelButton);
-		cancelButton.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				finish();
-			}
-		});
-
 	}
 
 	private void restartScanner() {
@@ -164,6 +155,12 @@ public class CameraQRReaderActivity extends Activity {
 						qrResult = sym.getData();
 						
 					} else {
+						
+						WebView webView = (WebView) findViewById(R.id.webView);
+						webView.getSettings().setAppCacheEnabled(true); 
+						webView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);
+						webView.loadUrl(sym.getData());
+						webView.setVisibility(View.VISIBLE);
 
 					}
 

@@ -22,29 +22,24 @@
           android:id="@+id/headerMask"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:background="#FF303030"
-          android:layout_alignParentBottom="true"
-          android:gravity="center"
-          >
-          
-          <ImageView 
-              android:id="@+id/cancelButton"
-              android:layout_width="wrap_content"
+          android:layout_alignParentTop="true"
+          android:background="#55000000"
+          android:orientation="horizontal" >
+
+          <TextView
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:padding="40dip"
-              android:src="@drawable/cancel_button_state"
-              android:clickable="true"
-              />
-          
-<!--           <TextView  -->
-<!--               android:layout_width="match_parent" -->
-<!--               android:layout_height="wrap_content" -->
-<!--               android:padding="10dip" -->
-<!--               android:gravity="center" -->
-<!--               android:text="Focus your camera to the QR Code to Check In!" -->
-<!--               /> -->
-          </LinearLayout>
+              android:gravity="center"
+              android:padding="10dip"
+              android:text="Focus your camera to the QR Code to Check In!" />
+      </LinearLayout>
+      
+      <WebView 
+          android:id="@+id/webView"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:alpha="0.8"
+          android:visibility="gone"/>
       
   </RelativeLayout>
   
