@@ -14,7 +14,9 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
 import android.widget.FrameLayout;
 
 import android.hardware.Camera;
@@ -79,6 +81,16 @@ public class CameraQRReaderActivity extends Activity {
 		// mPreview.setLayoutParams(new LayoutParams(400, 400));
 		preview = (FrameLayout) findViewById(R.id.cameraPreview);
 		preview.addView(mPreview);
+		
+		View cancelButton = findViewById(R.id.cancelButton);
+		cancelButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				finish();
+			}
+		});
 
 	}
 
