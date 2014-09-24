@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center">
+
+  <FrameLayout
+    android:id="@+id/cameraPreview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  />
+  
+  <RelativeLayout
+    android:id="@+id/maskingLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  >
+  
+      <LinearLayout
+          android:id="@+id/headerMask"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:background="#55000000"
+          android:layout_alignParentTop="true"
+          >
+          <TextView 
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dip"
+              android:gravity="center"
+              android:text="Focus your camera to the QR Code to Check In!"
+              />
+          </LinearLayout>
+      
+  </RelativeLayout>
+  
+
+</FrameLayout>
