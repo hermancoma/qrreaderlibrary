@@ -1,52 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:gravity="center">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical" >
 
-  <FrameLayout
-    android:id="@+id/cameraPreview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  />
-  
-  <RelativeLayout
-    android:id="@+id/maskingLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-  >
-  
-      <LinearLayout
-          android:id="@+id/headerMask"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          android:background="#FF303030"
-          android:layout_alignParentBottom="true"
-          android:gravity="center"
-          >
-          
-          <ImageView 
-              android:id="@+id/cancelButton"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:padding="40dip"
-              android:src="@drawable/cancel_button_state"
-              android:clickable="true"
-              />
-          
-<!--           <TextView  -->
-<!--               android:layout_width="match_parent" -->
-<!--               android:layout_height="wrap_content" -->
-<!--               android:padding="10dip" -->
-<!--               android:gravity="center" -->
-<!--               android:text="Focus your camera to the QR Code to Check In!" -->
-<!--               /> -->
-          </LinearLayout>
-      
-  </RelativeLayout>
-  
+    <RelativeLayout
+        android:id="@+id/maskingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:id="@+id/cameraPreview"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:padding="20dp" >
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="20dp"
+                    android:weightSum="3" >
+
+                    <ImageView
+                        android:id="@+id/user_qr"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/user_name_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="20dp"
+                    android:textColor="@color/black"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3" >
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1"
+                        android:background="@color/text_grey" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="20dp"
+                    android:text="Show your QR Code to be added to someone&apos;s Contacts. It will be saved in My Contacts > Contacts."
+                    android:textColor="@color/text_grey"
+                    android:textSize="14dp" />
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/headerMask"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#FF303030"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/cancelButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:clickable="true"
+                android:adjustViewBounds="true"
+                android:padding="10dip"
+                android:src="@drawable/cancel_button_state" />
+        </LinearLayout>
+    </RelativeLayout>
 
 </FrameLayout>

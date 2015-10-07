@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gilkor.lib.qrreaderlibrary"
+    package="com.gilkor.lib.qrcodelibrary"
     android:versionCode="1"
     android:versionName="1.0" >
 

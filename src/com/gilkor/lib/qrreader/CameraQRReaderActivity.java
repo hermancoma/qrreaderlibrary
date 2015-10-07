@@ -6,19 +6,21 @@
  */
 package com.gilkor.lib.qrreader;
 
-import com.gilkor.lib.qrreaderlibrary.R;
+import com.gilkor.lib.qrcodelibrary.R;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+import android.view.Display;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.FrameLayout;
-
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.graphics.Point;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.AutoFocusCallback;
@@ -35,6 +37,9 @@ public class CameraQRReaderActivity extends Activity {
 	
 	// ==================== QR Code
 	public static final String EXTRA_QRCODE_RESULT = "EXTRA_QRCODE_RESULT";
+	public static final String EXTRA_QRCODE_IMAGE = "EXTRA_QRCODE_IMAGE";
+	public static final String USER_EMAIL	 = "USER_EMAIL";
+	public static final String USER_NAME = "USER_NAME";
 	
 	private Camera mCamera;
 	private CameraPreview mPreview;
@@ -50,17 +55,6 @@ public class CameraQRReaderActivity extends Activity {
 	private boolean previewing = true;
 	private boolean isGilkorQRfound = false;
 
-	static {
-		try
-		{
-		    System.loadLibrary("iconv");
-		}
-		catch (UnsatisfiedLinkError e)
-		{
-			Log.e("QRReader Lib", "Cannot Load Lib for QR Reader");
-		}
-	}
-	
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -69,8 +63,17 @@ public class CameraQRReaderActivity extends Activity {
 
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+		Intent requestIntent = this.getIntent();
+		String userId = requestIntent.getStringExtra(USER_EMAIL);
+		String userName = requestIntent.getStringExtra(USER_NAME);
+		
 		autoFocusHandler = new Handler();
 		mCamera = getCameraInstance();
+		
+		Display display = getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		int width = size.x;
 
 		/* Instance barcode scanner */
 		scanner = new ImageScanner();
@@ -78,9 +81,12 @@ public class CameraQRReaderActivity extends Activity {
 		scanner.setConfig(0, Config.Y_DENSITY, 3);
 
 		mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
-		// mPreview.setLayoutParams(new LayoutParams(400, 400));
 		preview = (FrameLayout) findViewById(R.id.cameraPreview);
+//		mPreview.setLayoutParams(new LinearLayout.LayoutParams(width, width));
 		preview.addView(mPreview);
+		
+		TextView userNameTxt = (TextView) findViewById(R.id.user_name_text);
+		userNameTxt.setText(userName);
 		
 		View cancelButton = findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(new OnClickListener() {
@@ -91,6 +97,7 @@ public class CameraQRReaderActivity extends Activity {
 				finish();
 			}
 		});
+		
 
 	}
 
@@ -152,14 +159,13 @@ public class CameraQRReaderActivity extends Activity {
 				String qrResult = "";
 				SymbolSet syms = scanner.getResults();
 				for (Symbol sym : syms) {
-					if ((sym.getData().contains("gilkor.com")) 
-							|| (sym.getData().contains("apps.id"))) {
+					if (sym.getData().contains("")){
 						isGilkorQRfound = true;
 						barcodeScanned = true;
 
 						previewing = false;
 						mCamera.setPreviewCallback(null);
-						mCamera.stopPreview();
+						mPreview.buildDrawingCache();
 
 						qrResult = sym.getData();
 						
@@ -171,7 +177,7 @@ public class CameraQRReaderActivity extends Activity {
 
 				if (isGilkorQRfound) {
 					// TODO Return to application
-
+					
 					Intent resultIntent = new Intent();
 					resultIntent.putExtra(EXTRA_QRCODE_RESULT, qrResult);
 					setResult(RESULT_OK, resultIntent);
@@ -187,5 +193,5 @@ public class CameraQRReaderActivity extends Activity {
 			autoFocusHandler.postDelayed(doAutoFocus, 1000);
 		}
 	};
-
+	
 }

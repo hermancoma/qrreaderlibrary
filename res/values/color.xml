@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="darkblue">#bf610b</color>
+    <color name="lightblue">#85a6ac</color>
+    <color name="yellow">#d68b30</color>
+    <color name="yellow_down">#a96a1e</color>
+    
+    <color name="darkgrey">#383837</color>
+    <color name="lightgrey">#3f3e3e</color>
+    <color name="white">#f0f0f0</color>
+     <color name="white_darker">#cccccc</color>
+     
+    <color name="black">#252525</color>
+    <color name="transparent_color">#00000000</color>
+    
+    <color name="grey2">#d8d8d8</color>
+    <color name="text_grey">#8a8a8a</color>
+    <color name="white2">#ededec</color>
+    <color name="green">#68b04a</color>
+    
+    <color name="red">#ed1c24</color>
+    <color name="red_down">#87060b</color>
+    
+    <color name="exhibitors_bg">#686868</color>
+    <color name="floorplan_bg">#4b4b4b</color>
+    
+    <color name="background_tab_pressed">#33000000</color>
+    
+    
+</resources>
