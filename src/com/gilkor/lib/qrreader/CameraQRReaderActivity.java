@@ -7,6 +7,8 @@
 package com.gilkor.lib.qrreader;
 
 import com.gilkor.lib.qrcodelibrary.R;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,9 +20,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
 import android.hardware.Camera.AutoFocusCallback;
@@ -86,7 +90,7 @@ public class CameraQRReaderActivity extends Activity {
 		preview.addView(mPreview);
 		
 		TextView userNameTxt = (TextView) findViewById(R.id.user_name_text);
-		userNameTxt.setText(userName);
+//		userNameTxt.setText(userName);
 		
 		View cancelButton = findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(new OnClickListener() {
@@ -97,6 +101,24 @@ public class CameraQRReaderActivity extends Activity {
 				finish();
 			}
 		});
+		
+		
+		// QRCode image
+		
+		ImageView imageContainer = (ImageView) findViewById(R.id.user_qr);
+		
+		QRCodeEncoder qrCodeEncoder = new QRCodeEncoder(
+				"gilkor/tradexpo/users/" + userName, null,
+				Contents.Type.TEXT,
+				BarcodeFormat.QR_CODE.toString(), 1000);
+		try {
+			Bitmap bitmap = qrCodeEncoder.encodeAsBitmap();
+    		imageContainer.setImageDrawable(new BitmapDrawable(bitmap));
+
+		} catch (WriterException e) {
+			e.printStackTrace();
+		}
+		
 		
 
 	}
