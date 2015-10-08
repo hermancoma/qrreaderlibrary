@@ -78,6 +78,7 @@ public class CameraQRReaderActivity extends Activity {
 		Point size = new Point();
 		display.getSize(size);
 		int width = size.x;
+		int height = size.y;
 
 		/* Instance barcode scanner */
 		scanner = new ImageScanner();
@@ -86,11 +87,10 @@ public class CameraQRReaderActivity extends Activity {
 
 		mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
 		preview = (FrameLayout) findViewById(R.id.cameraPreview);
-//		mPreview.setLayoutParams(new LinearLayout.LayoutParams(width, width));
 		preview.addView(mPreview);
 		
-		TextView userNameTxt = (TextView) findViewById(R.id.user_name_text);
-//		userNameTxt.setText(userName);
+		TextView userNameTxt = (TextView) findViewById(R.id.userNameText);
+		userNameTxt.setText(userName);
 		
 		View cancelButton = findViewById(R.id.cancelButton);
 		cancelButton.setOnClickListener(new OnClickListener() {

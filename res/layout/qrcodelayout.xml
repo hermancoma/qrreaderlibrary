@@ -11,75 +11,91 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
+        <FrameLayout
+            android:id="@+id/cameraPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:padding="20dp" >
+        </FrameLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:background="@color/transparent_color"
+            android:weightSum="2"
+            android:gravity="bottom"
+            android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/cameraPreview"
+            <ScrollView
+                android:id="@+id/userContent"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_gravity="bottom"
                 android:layout_weight="1"
+                android:background="@color/white"
+                android:fillViewport="true"
                 android:padding="20dp" >
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="vertical" >
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="20dp" >
-
-                    <ImageView
-                        android:id="@+id/user_qr"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:scaleType="fitCenter" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/user_name_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:padding="20dp"
-                    android:textColor="@color/black"
-                    android:textSize="16dp"
-                    android:text="Alberttino Angus" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="3" >
+                    android:orientation="vertical" >
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="1"
-                        android:background="@color/text_grey" />
-                </LinearLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="20dp"
+                        android:weightSum="2" >
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="20dp"
-                    android:text="Show your QR Code to be added to someone&apos;s Contacts. It will be saved in My Contacts > Contacts."
-                    android:textColor="@color/text_grey"
-                    android:textSize="14dp" />
-            </LinearLayout>
+                        <ImageView
+                            android:id="@+id/user_qr"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitCenter" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/userNameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="20dp"
+                        android:text="Alberttino Angus"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="3" >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:background="@color/text_grey" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:padding="20dp"
+                        android:text="Show your QR Code to be added to someone&apos;s Contacts. It will be saved in My Contacts > Contacts."
+                        android:textColor="@color/text_grey"
+                        android:textSize="14dp" />
+                </LinearLayout>
+            </ScrollView>
         </LinearLayout>
-        
+
         <LinearLayout
             android:id="@+id/headerMask"
             android:layout_width="match_parent"
@@ -93,8 +109,8 @@
                 android:id="@+id/cancelButton"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:clickable="true"
                 android:adjustViewBounds="true"
+                android:clickable="true"
                 android:padding="10dip"
                 android:src="@drawable/cancel_button_state" />
         </LinearLayout>
