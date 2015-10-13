@@ -68,7 +68,7 @@ public class CameraQRReaderActivity extends Activity {
 		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 		Intent requestIntent = this.getIntent();
-		String userId = requestIntent.getStringExtra(USER_EMAIL);
+		String userEmail = requestIntent.getStringExtra(USER_EMAIL);
 		String userName = requestIntent.getStringExtra(USER_NAME);
 		
 		autoFocusHandler = new Handler();
@@ -108,7 +108,7 @@ public class CameraQRReaderActivity extends Activity {
 		ImageView imageContainer = (ImageView) findViewById(R.id.user_qr);
 		
 		QRCodeEncoder qrCodeEncoder = new QRCodeEncoder(
-				"gilkor/tradexpo/users/" + userName, null,
+				"gilkor/tradexpo/users/" + userEmail, null,
 				Contents.Type.TEXT,
 				BarcodeFormat.QR_CODE.toString(), 1000);
 		try {
